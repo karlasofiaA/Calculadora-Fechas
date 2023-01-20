@@ -22,25 +22,20 @@ const esBisiesto = (c) => {
             (c % 4 === 0) ? true : false
 };
 
-//Función onclick
-function calcular() {
-    validar();
-}
-
-//Validar fecha instroducida
-validar = () => {
+//Validar fecha instroducida y callback de botón "Calcular"
+calcular = () => {
     let [a, b, c] = valores();
-    console.log(a+" "+ b +" "+ c);
+    console.log(a + " " + b + " " + c);
     let bandera = false;
     let fecha;
     if (esNumerico(a) && esNumerico(b) && esNumerico(c)) {
         if (a <= 31 && b == 1 || b == 3 || b == 5 || b == 7 || b == 8 || b == 10 || b == 12) { //Meses con 31 días
-                bandera = true;
+            bandera = true;
         } else if (a <= 30 && b == 4 || b == 6 || b == 9 || b == 11) { //Meses con 30 días
-                bandera = true;
-        } else if (a <= 29 && b==2) { //Febrero
-            esBisiesto(c) ? bandera = true : 
-                                a <= 28 ? bandera = true : bandera = false;           
+            bandera = true;
+        } else if (a <= 29 && b == 2) { //Febrero
+            esBisiesto(c) ? bandera = true :
+                a <= 28 ? bandera = true : bandera = false;
         }
         else bandera = false;
     }
@@ -48,14 +43,12 @@ validar = () => {
         resultado.innerHTML = "-"
     }
     fecha = new Date(Number(c), Number(b - 1), Number(a))
-    bandera == true ? dias(fecha) : resultado.innerHTML = "Fecha invalida"
-    //bandera = false; [a, b, c] = [0, 0, 0];
+    bandera == true ? dias(fecha) : resultado.innerHTML = "Fecha inválida"
 }
 
 //Determinar el día de la semana
 function dias(fecha) {
     let diaSemana = fecha.getUTCDay();
-    //console.log(diaSemana)
     switch (diaSemana) {
         case 0:
             resultado.innerHTML = "Domingo, fin de semana"; break;
